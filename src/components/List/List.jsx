@@ -4,20 +4,11 @@ import {CircularProgress, Grid, Typography, InputLabel,
 import useStyles from './styles'
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
-const List = () => {
+const List = ({ places }) => {
   const classes = useStyles()
   const [type, setType] = useState('restaurants')
   const [rating, setRating] = useState('')
 
-  const places = [{name: 'Cool Place'}, 
-                  {name: 'Best Beer'},
-                  {name: 'Best Stakes'},
-                  {name: 'Cool Place'}, 
-                  {name: 'Best Beer'},
-                  {name: 'Best Stakes'},
-                  {name: 'Cool Place'}, 
-                  {name: 'Best Beer'},
-                  {name: 'Best Stakes'},]
   return (
     <div className={classes.container}>
       <Typography variant='h4'>Restaurants, Hotels & Attractions around you</Typography>
