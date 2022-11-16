@@ -6,11 +6,13 @@ import Rating from '@material-ui/lab'
 import useStyles from './styles'
 import { Eco } from '@material-ui/icons'
 
-const Map = ({setCoordinates, setBounds, coordinates}) => {
+const Map = ({setCoordinates, setBounds, coordinates, places}) => {
   const classes = useStyles()
-  const isMobile = useMediaQuery('(min-width:600px)')
-  // const coord = {lat:-5.1863785, lng: -43.0650}
+  const isDesktop = useMediaQuery('(min-width:600px)')
   const coord = {lat: 51.55066742, lng: -0.149051}
+  // replace for coordinates only having api with higher request availability
+  const avatar = 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
+
   return (
     <h1 className={classes.mapContainer}>
       <GoogleMapReact
@@ -26,6 +28,28 @@ const Map = ({setCoordinates, setBounds, coordinates}) => {
           }
           onChildClick={''}
       >
+        {places?.map((place, index) => (
+          <div 
+            className={classes.markerContainer} 
+            lat={Number(place.latitude)} 
+            lng={Number(place.longitude)}
+            key={index}>
+              {isDesktop ? (
+                <LocationOutlinedIcon color='primary' fontSize='large'/>
+              ):(
+                <Paper elevation={3} className={classes.paper}>
+                    <Typography className={classes.tipography} variant='subtitle2' gutterBottom>
+                      {place.name}
+                    </Typography>
+                    <img 
+                      className={classes.pointer}
+                      src={place.photo ? place.photo.images.large.url : avatar }
+                      alt={place.name}
+                    />
+                </Paper>
+              )}  
+          </div>
+        ))}
         
       </GoogleMapReact>  
     </h1>
