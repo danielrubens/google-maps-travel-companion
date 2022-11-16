@@ -7,8 +7,9 @@ import useStyles from './styles'
 
 const avatar = 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
-const PlaceDetails = ({place}) => {
+const PlaceDetails = ({place, selected, refProp}) => {
   const classes = useStyles()
+  if(selected) refProp?.current?.scrollIntoView({behavior: 'smooth', block: 'start'}) 
   return (
     <Card elevation={6}>
       <CardMedia style={{height: 350}}
