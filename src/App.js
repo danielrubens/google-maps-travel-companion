@@ -5,9 +5,11 @@ import { getPlacesData } from "./api"
 
 const App = () => {
 
+    const [rating, setRating] = useState('')
     const [places, setPlaces] = useState([])
     const [bounds, setBounds] = useState({})
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(false)
+    const [type, setType] = useState('restaurants')
     const [childClicked, setChildClicked] = useState(null)
     const [coordinates, setCoordinates] = useState({lat: 51.55066742, lng: -0.149051})
 
@@ -18,9 +20,9 @@ const App = () => {
 
     useEffect(() => {
         setLoading(true)
-        getPlacesData(bounds?.sw, bounds?.ne).then((data) => { 
+        getPlacesData(type, bounds?.sw, bounds?.ne).then((data) => { 
             setPlaces(data); setLoading(false) })
-    }, [coordinates, bounds])
+    }, [type, coordinates, bounds])
 
     return(
         <>
@@ -31,7 +33,11 @@ const App = () => {
                 <List 
                     places={places}
                     childClicked={childClicked}
-                    loading={loading}
+                    isLoading={isLoading}
+                    type={type}
+                    setType={setType}
+                    rating={rating}
+                    setRating={setRating}
                     />
                 
             </Grid>
