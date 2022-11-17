@@ -2,7 +2,7 @@ This is a [React.js](https://reactjs.org/docs/getting-started.html) project [`ht
 
 ## Getting Started
 
-First, subscribe to the API channels [TravelAdvisor] (https://rapidapi.com/apidojo/api/travel-advisor/) and [GoogleMapsAPI] (https://cloud.google.com/)
+First, subscribe to the API channels [TravelAdvisor](https://rapidapi.com/apidojo/api/travel-advisor/) and [GoogleMapsAPI](https://cloud.google.com/)
 
 Install the dependencies:
 ```bash
