@@ -11,6 +11,7 @@ const App = () => {
     const [isLoading, setLoading] = useState(false)
     const [type, setType] = useState('restaurants')
     const [childClicked, setChildClicked] = useState(null)
+    const [filteredPlaces, setFilteredPlaces] = useState([])
     const [coordinates, setCoordinates] = useState({lat: 51.55066742, lng: -0.149051})
 
     useEffect(() => {
@@ -19,9 +20,14 @@ const App = () => {
     }, [])
 
     useEffect(() => {
+        const filteredPlaces = places.filter((place) => place.rating > rating)
+        setFilteredPlaces(filteredPlaces)
+    }, [rating])
+
+    useEffect(() => {
         setLoading(true)
         getPlacesData(type, bounds?.sw, bounds?.ne).then((data) => { 
-            setPlaces(data); setLoading(false) })
+            setPlaces(data); setLoading(false); setFilteredPlaces([]) })
     }, [type, coordinates, bounds])
 
     return(
@@ -45,7 +51,7 @@ const App = () => {
                 <Map setCoordinates={setCoordinates}
                      setBounds={setBounds}
                      coordinates={coordinates}
-                     places={places}
+                     places={filteredPlaces.length ? filteredPlaces : places}
                      setChildClicked={setChildClicked}
                 />
             </Grid>
