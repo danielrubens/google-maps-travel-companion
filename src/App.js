@@ -27,10 +27,13 @@ const App = () => {
     }, [rating])
 
     useEffect(() => {
+        if(bounds.sw && bounds.ne){
         setLoading(true)
         getPlacesData(type, bounds?.sw, bounds?.ne).then((data) => { 
-            setPlaces(data); setLoading(false); setFilteredPlaces([]) })
-    }, [type, coordinates, bounds])
+            setPlaces(data.filter((place) =>  place.name && place.num_reviews > 0)); 
+            setLoading(false); setFilteredPlaces([]) 
+        })
+    }}, [type, bounds])
 
     return(
         <>
