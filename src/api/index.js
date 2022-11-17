@@ -1,7 +1,4 @@
 import axios from 'axios'
-
- // old api 9f8dc9bd0cmshd7a8d3b1e5d4bd6p1bef81jsnf5ddcaa720dc
- // new api 5eca3d4f64msh824e5a088cd5e3fp1cd926jsn3706e822de31
  
 export const getPlacesData = async (type, sw, ne) => {
     try{
@@ -15,7 +12,7 @@ export const getPlacesData = async (type, sw, ne) => {
               tr_longitude: ne.lng,
             },
             headers: {
-              'X-RapidAPI-Key': '5eca3d4f64msh824e5a088cd5e3fp1cd926jsn3706e822de31',
+              'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_TRAVEL_API_KEY,
               'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
             }
           })
