@@ -4,21 +4,18 @@ import { Paper, Typography, useMediaQuery } from '@material-ui/core'
 import LocationOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
 import Rating from '@material-ui/lab/Rating'
 import useStyles from './styles'
-import { Eco } from '@material-ui/icons'
 
 const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked}) => {
   const classes = useStyles()
   const isDesktop = useMediaQuery('(min-width:600px)')
-  const coord = {lat: 51.55066742, lng: -0.149051}
-  // replace for coordinates only having api with higher request availability
   const avatar = 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
   return (
     <h1 className={classes.mapContainer}>
       <GoogleMapReact
           bootstrapURLKeys={{key:'AIzaSyBdAW7JEuGU68SgOi0XRUtdWEDIROm0PHM'}}
-          defaultCenter={coord}
-          center={coord}
+          defaultCenter={coordinates}
+          center={coordinates}
           defaultZoom={14}
           margin={[50,50,50,50]}
           options={''}

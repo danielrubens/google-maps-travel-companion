@@ -6,13 +6,15 @@ import { getPlacesData } from "./api"
 const App = () => {
 
     const [rating, setRating] = useState('')
-    const [places, setPlaces] = useState([])
-    const [bounds, setBounds] = useState({})
-    const [isLoading, setLoading] = useState(false)
     const [type, setType] = useState('restaurants')
+    
+    const [bounds, setBounds] = useState({})
+    const [coordinates, setCoordinates] = useState({})
+    
+    const [places, setPlaces] = useState([])
+    const [isLoading, setLoading] = useState(false)
     const [childClicked, setChildClicked] = useState(null)
     const [filteredPlaces, setFilteredPlaces] = useState([])
-    const [coordinates, setCoordinates] = useState({lat: 51.55066742, lng: -0.149051})
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
@@ -33,7 +35,7 @@ const App = () => {
     return(
         <>
         <CssBaseline />
-        <Header />
+        <Header setCoordinates={setCoordinates}/>
         <Grid container spacing={3} style={ { width: '100%' } }>
             <Grid item xs={12} md={4}>
                 <List 
